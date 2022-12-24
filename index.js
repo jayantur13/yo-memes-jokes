@@ -46,8 +46,13 @@ app.get("/:subreddit", async (req, res) => {
           let author = el.data.author;
           let title = el.data.title;
           let post_hint = el.data.post_hint;
-          let img = el.data.url_overridden_by_dest;
-          data.push(author, title, post_hint, img);
+          let url = el.data.url_overridden_by_dest;
+          data.push({
+            "author": author,
+            "title": title,
+            "post_hint": post_hint,
+            "url": url,
+          });
         });
         let error = false;
         let code = 200;
@@ -103,8 +108,13 @@ app.get("/:subreddit/:memesare", async (req, res) => {
             let author = el.data.author;
             let title = el.data.title;
             let post_hint = el.data.post_hint;
-            let img = el.data.url_overridden_by_dest;
-            data.push(author, title, post_hint, img);
+            let url = el.data.url_overridden_by_dest;
+            data.push({
+              "author": author,
+              "title": title,
+              "post_hint": post_hint,
+              "url": url,
+            });
           });
           let error = false;
           let code = 200;
@@ -161,8 +171,13 @@ app.get("/:subreddit/:memesare/:freq/", async (req, res) => {
             let author = el.data.author;
             let title = el.data.title;
             let post_hint = el.data.post_hint;
-            let img = el.data.url_overridden_by_dest;
-            data.push(author, title, post_hint, img);
+            let url = el.data.url_overridden_by_dest;
+            data.push({
+              "author": author,
+              "title": title,
+              "post_hint": post_hint,
+              "url": url,
+            });
           });
           let error = false;
           let code = 200;

@@ -8,7 +8,8 @@
 </p>
 
 > Logo by u/RamenFish195
->> Available as node package,api on RapidAPI
+>
+> > Available as [node package](https://www.npmjs.com/package/reddit-memes-api),api on [RapidAPI](https://rapidapi.com/jayantur13/api/memes-from-reddit)
 
 ## Installation
 
@@ -22,7 +23,7 @@ Install using npm or yarn
 
 ## API Reference
 
-#### Type 1 - data
+#### Type 1 - Get data
 
 ```http
   GET /${subreddit}
