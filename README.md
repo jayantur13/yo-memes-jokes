@@ -8,6 +8,7 @@
 </p>
 
 > Logo by u/RamenFish195
+>> Available as node package,api on RapidAPI
 
 ## Installation
 
