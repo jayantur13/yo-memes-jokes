@@ -2,9 +2,9 @@
   "name": "reddit-memes-api",
   "version": "1.0.0",
   "description": "Extract memes and jokes from reddit",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "keywords": [
     "memes",
