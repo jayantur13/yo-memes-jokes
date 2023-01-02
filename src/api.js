@@ -20,22 +20,22 @@ const f1 = async (subreddit) => {
 const f2 = async (subreddit, memesare, limit) => {
   if (subreddit !== "" && memesare !== "") {
     if (
-      !onlyAllowed.find((el) => el === subreddit) &&
+      !onlyAllowed.find((el) => el === subreddit) ||
       !onlyType.find((el) => el === memesare)
     ) {
-      return "Provide valid subreddit & memesare";
+      return "Check subreddit name and/or memesare";
     } else {
-       if(limit){
+      if (limit) {
         let data = await axios.get(
           process.env.URL + `${subreddit}/${memesare}.json?limit=${limit}`
         );
         return data;
-       }else {
+      } else {
         let data = await axios.get(
           process.env.URL + `${subreddit}/${memesare}/.json`
         );
         return data;
-       }
+      }
     }
   } else {
     return "Subreddit & memesare can't be empty";
@@ -45,11 +45,11 @@ const f2 = async (subreddit, memesare, limit) => {
 const f3 = async (subreddit, memesare, freq, limit) => {
   if (subreddit !== "" && memesare !== "" && freq !== "") {
     if (
-      !onlyAllowed.find((el) => el === subreddit) &&
-      !onlyType.find((el) => el === memesare) &&
-      !onlyType.find((el) => el === freq)
+      !onlyAllowed.find((el) => el === subreddit) ||
+      !onlyType.find((el) => el === memesare) ||
+      !onlyFreq.find((el) => el === freq)
     ) {
-      return "Provide valid subreddit, memesare and freq";
+      return "Check subreddit name and/or memesare and/or freq";
     } else {
       if (limit) {
         let data = await axios.get(

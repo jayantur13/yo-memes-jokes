@@ -77,12 +77,12 @@ app.get("/:subreddit/:memesare", async (req, res) => {
   let limit = req.query.limit;
   if (subreddit !== "" && memesare !== "") {
     let f2res = await f2(subreddit, memesare, limit);
-    if (f2res === "Provide valid subreddit & memesare") {
+    if (f2res === "Check subreddit name and/or memesare") {
       return res.status(400).json({
         error: true,
         code: 400,
         type: "Bad Request",
-        data: "Provide valid subreddit & memesare",
+        data: "Check subreddit name and/or memesare",
       });
     }
     if (f2res === "Subreddit & memesare can't be empty") {
@@ -140,12 +140,12 @@ app.get("/:subreddit/:memesare/:freq/", async (req, res) => {
   let limit = req.query.limit;
   if (subreddit !== "" && memesare !== "" && freq !== "") {
     let f3res = await f3(subreddit, memesare, freq, limit);
-    if (f3res === "Provide valid subreddit, memesare and freq") {
+    if (f3res === "Check subreddit name and/or memesare and/or freq") {
       return res.status(400).json({
         error: true,
         code: 400,
         type: "Bad Request",
-        data: "Provide valid subreddit, memesare and freq",
+        data: "Check subreddit name and/or memesare and/or freq",
       });
     }
     if (f3res === "Subreddit, memesare, freq can't be empty") {
