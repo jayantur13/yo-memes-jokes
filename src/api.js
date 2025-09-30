@@ -1,72 +1,80 @@
 const axios = require("axios");
 
-const onlyAllowed = ["meme", "memes", "joke", "jokes"];
+const onlyAllowed = require("./subredditList").getSubredditList();
 const onlyType = ["hot", "new", "top", "rising"];
 const onlyFreq = ["hour", "day", "week", "month", "year", "all", "now"];
 
-const f1 = async (subreddit) => {
-  if (subreddit !== "") {
-    if (onlyAllowed.find((el) => el === subreddit)) {
-      let data = await axios.get(process.env.URL + `${subreddit}/.json`);
-      return data;
-    } else {
-      return "Not Allowed";
-    }
-  } else {
+// ✅ Clamp limit
+function clampLimit(limit) {
+  let num = parseInt(limit, 10);
+  if (isNaN(num) || num <= 0) return 10; // default
+  if (num > 100) return 100; // Reddit max
+  return num;
+}
+
+/**
+ * f1 - subreddit listing (default .json)
+ */
+const f1 = async (subreddit, limit, after, before, count) => {
+  if (!subreddit || typeof subreddit !== "string" || subreddit.trim() === "")
     return "Subreddit name can't be empty";
-  }
+  if (!onlyAllowed.find((el) => el.name === subreddit)) return "Not Allowed";
+
+  limit = clampLimit(limit);
+
+  let url = `${process.env.URL}${subreddit}/.json?limit=${limit}`;
+  if (after) url += `&after=${after}`;
+  if (before) url += `&before=${before}`;
+  if (count) url += `&count=${count}`;
+  return axios.get(url);
 };
 
-const f2 = async (subreddit, memesare, limit) => {
-  if (subreddit !== "" && memesare !== "") {
-    if (
-      !onlyAllowed.find((el) => el === subreddit) ||
-      !onlyType.find((el) => el === memesare)
-    ) {
-      return "Check subreddit name and/or memesare";
-    } else {
-      if (limit) {
-        let data = await axios.get(
-          process.env.URL + `${subreddit}/${memesare}.json?limit=${limit}`
-        );
-        return data;
-      } else {
-        let data = await axios.get(
-          process.env.URL + `${subreddit}/${memesare}/.json`
-        );
-        return data;
-      }
-    }
-  } else {
-    return "Subreddit & memesare can't be empty";
+/**
+ * f2 - subreddit posts by type (hot/new/top/rising)
+ */
+const f2 = async (subreddit, memesare, limit, after, before) => {
+  if (!subreddit || !memesare) return "Subreddit & memesare can't be empty";
+
+  if (
+    !onlyAllowed.find((el) => el.name === subreddit) ||
+    !onlyType.includes(memesare)
+  ) {
+    return "Check subreddit name and/or memesare";
   }
+
+  limit = clampLimit(limit);
+
+  let url = `${process.env.URL}${subreddit}/${memesare}.json?limit=${limit}`;
+  if (after) url += `&after=${after}`;
+  if (before) url += `&before=${before}`;
+  if (count) url += `&count=${count}`;
+
+  return axios.get(url);
 };
 
-const f3 = async (subreddit, memesare, freq, limit) => {
-  if (subreddit !== "" && memesare !== "" && freq !== "") {
-    if (
-      !onlyAllowed.find((el) => el === subreddit) ||
-      !onlyType.find((el) => el === memesare) ||
-      !onlyFreq.find((el) => el === freq)
-    ) {
-      return "Check subreddit name and/or memesare and/or freq";
-    } else {
-      if (limit) {
-        let data = await axios.get(
-          process.env.URL +
-            `${subreddit}/${memesare}.json?t=${freq}&limit=${limit}`
-        );
-        return data;
-      } else {
-        let data = await axios.get(
-          process.env.URL + `${subreddit}/${memesare}.json?t=${freq}`
-        );
-        return data;
-      }
-    }
-  } else {
+/**
+ * f3 - subreddit posts by type + frequency
+ */
+const f3 = async (subreddit, memesare, freq, limit, after, before) => {
+  if (!subreddit || !memesare || !freq)
     return "Subreddit, memesare and freq can't be empty";
+
+  if (
+    !onlyAllowed.find((el) => el.name === subreddit) ||
+    !onlyType.includes(memesare) ||
+    !onlyFreq.includes(freq)
+  ) {
+    return "Check subreddit name and/or memesare and/or freq";
   }
+
+  limit = clampLimit(limit);
+
+  let url = `${process.env.URL}${subreddit}/${memesare}.json?t=${freq}&limit=${limit}`;
+  if (after) url += `&after=${after}`;
+  if (before) url += `&before=${before}`;
+  if (count) url += `&count=${count}`;
+
+  return axios.get(url);
 };
 
 module.exports = { f1, f2, f3 };

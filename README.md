@@ -2,14 +2,14 @@
   <img alt="Logo" src="https://i.redd.it/9p9stjv9sfa51.png">
   <p align="center">
     <h4 align="center">yo-memes-jokes</h4>
-    <h3 align="center"><b>Get json data (gifs, images, videos) from subreddit's reddit.</b></h3>
+    <h3 align="center"><b>Get json data (gifs, images, videos) from Reddit.</b></h3>
   </p>
   <p align="center"><a href="#installation">Install</a> • <a href="#api-reference">API Reference</a> • <a href="#usageexamples">Usage</a> • <a href="#methods-for-node-package">Node Package</a> • <a href="#contributing">Contributing</a></p>
 </p>
 
 > Logo by u/RamenFish195
 >
-> > Available as [node package](https://www.npmjs.com/package/reddit-memes-api),api on [RapidAPI](https://rapidapi.com/jayantur13/api/memes-from-reddit)
+> > Available as [node package](https://www.npmjs.com/package/reddit-memes-api)
 
 ## Installation
 
@@ -32,6 +32,8 @@ Install using npm or yarn
 | Parameter   | Type     | Description                             |
 | :---------- | :------- | :-------------------------------------- |
 | `subreddit` | `string` | **Required**. Need valid subreddit name |
+| `after`     | `int`    | **Optional**. To go to next page        |
+| `before`    | `int`    | **Optional**. To go to previous page    |
 
 #### Type 2 - Get data
 
@@ -44,6 +46,8 @@ Install using npm or yarn
 | `subreddit` | `string` | **Required**. Need valid subreddit name    |
 | `memesare`  | `string` | **Required**. Need valid memesare type     |
 | `limit`     | `int`    | **Optional**. Number of results to display |
+| `after`     | `int`    | **Optional**. To go to next page           |
+| `before`    | `int`    | **Optional**. To go to previous page       |
 
 #### Type 3 - Get data
 
@@ -57,6 +61,8 @@ Install using npm or yarn
 | `memesare`  | `string` | **Required**. Need valid memesare type     |
 | `freq`      | `string` | **Required**. Need valid frequency         |
 | `limit`     | `int`    | **Optional**. Number of results to display |
+| `after`     | `int`    | **Optional**. To go to next page           |
+| `before`    | `int`    | **Optional**. To go to previous page       |
 
 #### Paramaters information
 
@@ -66,6 +72,8 @@ Install using npm or yarn
 | `memesare`  | `string` | hot, new, top, rising                                    |
 | `freq`      | `string` | now, hour, day, week, month, year, all                   |
 | `limit`     | `int`    | provide according to no. of contents exists in subreddit |
+| `after`     | `int`    | go to the next page                                      |
+| `before`    | `int`    | go to the previous page                                  |
 
 ## Usage/Examples
 
@@ -89,22 +97,36 @@ f2(subreddit,memesare,limit)
 f3(subreddit,memesare,freq,limit)
 ```
 
+## env example
+
+```
+URL=https://reddit.com/r/
+PORT=3000
+
+# Rate Limiting
+RATE_LIMIT_WINDOW=60000     # 1 minute (in ms)
+RATE_LIMIT_MAX=60           # 60 requests per window per IP
+
+# Caching
+CACHE_TTL=30                # 30 seconds
+```
+
+## Changelog
+
+Read the project changes in [Changelog.md](https://github.com/jayantur13/yo-memes-jokes/blob/main/Changelog.md)
+
 ## Contributing
 
 Contributions are always welcome!
 
-See [Contributing.md](https://github.com/jayantur13/yo-memes-jokes/blob/master/CONTRIBUTING.md) for ways to get started.
+See [Contributing.md](https://github.com/jayantur13/yo-memes-jokes/blob/main/CONTRIBUTING.md) for ways to get started.
 
-Please adhere to this project's [Code Of Conduct](https://github.com/jayantur13/yo-memes-jokes/blob/master/CODE_OF_CONDUCT.md).
-
-## Issues
-
-Not yet discovered
+Please adhere to this project's [Code Of Conduct](https://github.com/jayantur13/yo-memes-jokes/blob/main/CODE_OF_CONDUCT.md).
 
 ## Support
 
-Need support ? Create a new issue.Support the project, Sponsor!
+Support the project using Github sponsor. For issues/features or anything else visit Github repo and open a new issue.
 
 ## License
 
-This project is licensed under [MIT License](https://github.com/jayantur13/yo-memes-jokes/blob/master/LICENSE)
+This project is licensed under [MIT License](https://github.com/jayantur13/yo-memes-jokes/blob/main/LICENSE)
