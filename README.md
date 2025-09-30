@@ -1,15 +1,13 @@
 <p align="center">
   <img alt="Logo" src="https://i.redd.it/9p9stjv9sfa51.png">
   <p align="center">
-    <h4 align="center">yo-memes-jokes</h4>
+    <h4 align="center">reddit-memes-api</h4>
     <h3 align="center"><b>Get json data (gifs, images, videos) from Reddit.</b></h3>
   </p>
   <p align="center"><a href="#installation">Install</a> • <a href="#api-reference">API Reference</a> • <a href="#usageexamples">Usage</a> • <a href="#methods-for-node-package">Node Package</a> • <a href="#contributing">Contributing</a></p>
 </p>
 
 > Logo by u/RamenFish195
->
-> > Available as [node package](https://www.npmjs.com/package/reddit-memes-api)
 
 ## Installation
 
